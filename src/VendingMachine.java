@@ -175,8 +175,7 @@ public class VendingMachine {
 	 * @return The balance in the vending machine
 	 */
 	public double getBalance() {
-    // INJECTED FAULT FOR TEST VALIDATION
-    return balance + 5.0; 
+    return balance;
 }
 
 	/**
