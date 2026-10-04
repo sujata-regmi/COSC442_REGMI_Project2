@@ -59,4 +59,49 @@ public class VendingMachineTest {
         // Assert
         assertEquals(2.00, machine.getBalance(), 0.001);
     }
+    @Test
+    void testRemoveItem() throws VendingMachineException {
+        // Arrange
+        VendingMachine machine = new VendingMachine();
+        VendingMachineItem item = new VendingMachineItem("Chips", 1.25);
+        machine.addItem(item, "C");
+
+        // Act
+        VendingMachineItem removed = machine.removeItem("C");
+
+        // Assert
+        assertEquals(item, removed);
+        assertThrows(VendingMachineException.class, () -> machine.removeItem("C"));
+    }
+
+    @Test
+    void testMakePurchase() throws VendingMachineException {
+        // Arrange
+        VendingMachine machine = new VendingMachine();
+        VendingMachineItem item = new VendingMachineItem("Water", 1.00);
+        machine.addItem(item, "A");
+        machine.insertMoney(2.00);
+
+        // Act
+        boolean success = machine.makePurchase("A");
+
+        // Assert
+        assertTrue(success);
+        assertEquals(1.00, machine.getBalance(), 0.001);
+        assertNull(machine.getItem("A"));
+    }
+
+    @Test
+    void testReturnChange() throws VendingMachineException {
+        // Arrange
+        VendingMachine machine = new VendingMachine();
+        machine.insertMoney(3.50);
+
+        // Act
+        double change = machine.returnChange();
+
+        // Assert
+        assertEquals(3.50, change, 0.001);
+        assertEquals(0.0, machine.getBalance(), 0.001);
+    }
 }
