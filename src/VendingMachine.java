@@ -175,8 +175,9 @@ public class VendingMachine {
 	 * @return The balance in the vending machine
 	 */
 	public double getBalance() {
-		return this.balance;
-	}
+    // INJECTED FAULT FOR TEST VALIDATION
+    return balance + 5.0; 
+}
 
 	/**
 	 * This function attempts to purchase the item with the given code from the
