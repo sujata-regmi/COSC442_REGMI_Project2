@@ -1,5 +1,7 @@
 # Vending Machine Test Plan
 
-| Method / Behavior | Valid Case(s) | Exception / Invalid Case(s) | Boundary Case(s) | Oracle / Expected Result | Related JUnit Test(s) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| | | | | | |
+| Method / Behavior | Valid Case(s) | Exception / Invalid Case(s) | Boundary Case | Oracle / Expected Result | Related JUnit Test(s) |
+|AddItem  | Add a valid VendingMachineItem to an empty slot| Adding an item to a slot that is already occupied |Accessing slot bounds at index 0 ("A") and index 3 ("D") | Item is successfully stored in the specified slot. Throws VendingMachineException if occupied or invalid | testAddItem |
+|GetBalance| Retrieve the current balance after initialization or currency insertion | N/A (no exceptions thrown by this method) | Initial balance starting at 0.0 or checking balance after zero insertions | Returns the exact current numeric double value of the machine's balance | testGetBalance |
+|GetItem| Retrieve an item from a valid, occupied slot | Passing an invalid slot code string | Querying an empty slot where no item has been added | Returns the correct VendingMachineItem object, or null if empty. Throws exception on invalid code | testGetItem |
+|InsertMoney| Insert a valid positive currency amount | Inserting a negative money amount | Inserting 0.0 or amounts right at the negative boundary | Balance increments correctly by the inserted amount. Throws VendingMachineException for negative values | testInsertMoney |
