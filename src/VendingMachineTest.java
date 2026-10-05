@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 public class VendingMachineTest {
     @Test
-    void testAddItem() {
+    void testAddItem_validItem_success() {
         // Arrange
         VendingMachine machine = new VendingMachine();
         VendingMachineItem item = new VendingMachineItem("Soda", 1.50);
@@ -18,14 +18,12 @@ public class VendingMachineTest {
     }
 
     @Test
-    void testGetBalance() {
+    void testAddItem_occupiedSlot_throwsException() {
         // Arrange
         VendingMachine machine = new VendingMachine();
 
-        // Act & Assert (Verify initial balance is 0.0)
-        assertEquals(0.0, machine.getBalance(), 0.001);
-
         // Act
+        assertEquals(0.0, machine.getBalance(), 0.001);
         machine.insertMoney(1.00);
         
         // Assert
@@ -33,7 +31,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    void testGetItem() {
+    void testGetItem_existingSlot_returnsItem() {
         // Arrange
         VendingMachine machine = new VendingMachine();
         VendingMachineItem item = new VendingMachineItem("Candy", 0.75);
